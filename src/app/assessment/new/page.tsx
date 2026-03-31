@@ -87,8 +87,11 @@ export default function NewAssessmentPage() {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentStep < STEP_LABELS.length - 1) {
+      if (currentStep === 5 && !assessmentId) {
+        await saveToDatabase('in_progress');
+      }
       setCurrentStep((s) => s + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -105,7 +108,7 @@ export default function NewAssessmentPage() {
     await saveToDatabase('completed');
     localStorage.removeItem('assessment_draft');
     if (assessmentId) localStorage.removeItem(`assessment_${assessmentId}`);
-    router.push('/');
+    router.push('/admin');
   };
 
   const renderStep = () => {
@@ -116,7 +119,7 @@ export default function NewAssessmentPage() {
       case 3: return <Step4Systems data={data} onChange={handleChange} />;
       case 4: return <Step5RedFlags data={data} onChange={handleChange} />;
       case 5: return <Step6Location data={data} onChange={handleChange} />;
-      case 6: return <Step7Notes data={data} onChange={handleChange} />;
+      case 6: return <Step7Notes data={data} onChange={handleChange} assessmentId={assessmentId} />;
       case 7: return <Step8Summary data={data} />;
       default: return null;
     }
@@ -129,7 +132,7 @@ export default function NewAssessmentPage() {
         <div className="mx-auto max-w-3xl px-4 py-3">
           <div className="flex items-center justify-between">
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/admin')}
               className="text-sm text-slate-400 hover:text-white transition-colors"
             >
               ← Dashboard

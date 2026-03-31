@@ -99,6 +99,7 @@ export interface Assessment {
   location_notes: string;
 
   // Step 7: Notes
+  estimated_monthly_rent: string;
   general_notes: string;
   overall_impression: string;
 
@@ -190,6 +191,7 @@ export const EMPTY_ASSESSMENT: Assessment = {
   location_neighbourhood: '',
   location_comparable_prices: '',
   location_notes: '',
+  estimated_monthly_rent: '',
   general_notes: '',
   overall_impression: '',
   overall_condition_score: null,

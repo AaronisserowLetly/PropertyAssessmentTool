@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS assessments (
   location_notes TEXT,
 
   -- Step 7: Notes & Photos
+  estimated_monthly_rent TEXT,
   general_notes TEXT,
   overall_impression TEXT,
 
@@ -158,3 +159,12 @@ $$ language 'plpgsql';
 
 CREATE TRIGGER update_profiles_updated_at BEFORE UPDATE ON profiles FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_assessments_updated_at BEFORE UPDATE ON assessments FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Run these if you already have the assessments table:
+ALTER TABLE assessments ADD COLUMN IF NOT EXISTS estimated_monthly_rent TEXT;
+
+-- Storage: create this bucket in your Supabase Dashboard > Storage > New Bucket
+-- Name: assessment-photos, Public: YES
+-- assessment_photos table already exists in original setup
+-- Add storage policy (run in SQL editor):
+-- INSERT INTO storage.buckets (id, name, public) VALUES ('assessment-photos', 'assessment-photos', true) ON CONFLICT DO NOTHING;

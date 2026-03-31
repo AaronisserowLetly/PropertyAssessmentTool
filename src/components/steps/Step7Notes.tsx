@@ -2,19 +2,30 @@
 
 import { Assessment } from '@/lib/types';
 import { TextAreaField, SectionHeader } from '@/components/FormFields';
+import PhotoUpload from '@/components/PhotoUpload';
 
 interface Props {
   data: Assessment;
   onChange: (updates: Partial<Assessment>) => void;
+  assessmentId?: string | null;
 }
 
-export default function Step7Notes({ data, onChange }: Props) {
+export default function Step7Notes({ data, onChange, assessmentId }: Props) {
   return (
     <div className="space-y-6">
       <SectionHeader
         icon="📝"
         title="Notes & Overall Impression"
         description="Final thoughts before you wrap up. This is your chance to capture anything that doesn't fit neatly into the other sections."
+      />
+
+      <TextAreaField
+        label="Estimated Monthly Rent"
+        hint="In your professional opinion, what would be a suitable monthly rent for this property?"
+        value={data.estimated_monthly_rent}
+        onChange={(v) => onChange({ estimated_monthly_rent: v })}
+        placeholder="e.g. £2,500 pcm — well-presented 3-bed in strong rental area"
+        rows={3}
       />
 
       <TextAreaField
@@ -35,17 +46,12 @@ export default function Step7Notes({ data, onChange }: Props) {
         rows={5}
       />
 
-      <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-200">
-        <strong>Reminder — Photos:</strong> Make sure you&apos;ve taken photos of:
-        <ul className="mt-2 space-y-1 list-disc list-inside text-blue-300">
-          <li>Front and rear of property</li>
-          <li>Street scene</li>
-          <li>Kitchen and all bathrooms</li>
-          <li>Any defects or issues you flagged</li>
-          <li>Garden/parking area</li>
-          <li>Any standout features (period details, views, etc.)</li>
-        </ul>
-      </div>
+      <SectionHeader
+        icon="📷"
+        title="Photos"
+        description="Upload photos from your visit. These are stored securely and visible only to the Letly team."
+      />
+      <PhotoUpload assessmentId={assessmentId ?? null} />
     </div>
   );
 }

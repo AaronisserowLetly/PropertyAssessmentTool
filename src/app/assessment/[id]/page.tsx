@@ -33,7 +33,7 @@ export default function EditAssessmentPage() {
         .single();
       if (error || !row) {
         alert('Assessment not found');
-        router.push('/');
+        router.push('/admin');
         return;
       }
       setData({ ...EMPTY_ASSESSMENT, ...row });
@@ -79,7 +79,7 @@ export default function EditAssessmentPage() {
   };
   const handleSubmit = async () => {
     await saveToDatabase('completed');
-    router.push('/');
+    router.push('/admin');
   };
 
   const renderStep = () => {
@@ -90,7 +90,7 @@ export default function EditAssessmentPage() {
       case 3: return <Step4Systems data={data} onChange={handleChange} />;
       case 4: return <Step5RedFlags data={data} onChange={handleChange} />;
       case 5: return <Step6Location data={data} onChange={handleChange} />;
-      case 6: return <Step7Notes data={data} onChange={handleChange} />;
+      case 6: return <Step7Notes data={data} onChange={handleChange} assessmentId={id} />;
       case 7: return <Step8Summary data={data} />;
       default: return null;
     }

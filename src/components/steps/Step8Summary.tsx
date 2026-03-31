@@ -198,7 +198,7 @@ export default function Step8Summary({ data }: Props) {
       </div>
 
       {/* Impressions */}
-      {(data.overall_impression || data.general_notes) && (
+      {(data.overall_impression || data.general_notes || data.estimated_monthly_rent) && (
         <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4 space-y-3">
           <h4 className="text-sm font-semibold text-blue-400 uppercase tracking-wide">Notes & Impressions</h4>
           {data.overall_impression && (
@@ -211,6 +211,12 @@ export default function Step8Summary({ data }: Props) {
             <div>
               <span className="text-xs text-slate-400">General Notes</span>
               <p className="text-sm text-slate-200 mt-1">{data.general_notes}</p>
+            </div>
+          )}
+          {data.estimated_monthly_rent && (
+            <div>
+              <span className="text-xs text-slate-400">Estimated Rent</span>
+              <p className="text-sm text-slate-200 mt-1">{data.estimated_monthly_rent}</p>
             </div>
           )}
         </div>
