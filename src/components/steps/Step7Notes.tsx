@@ -46,11 +46,25 @@ export default function Step7Notes({ data, onChange, assessmentId }: Props) {
         rows={5}
       />
 
-      <SectionHeader
-        icon="📷"
-        title="Photos"
-        description="Upload photos from your visit. These are stored securely and visible only to the Letly team."
-      />
+      <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-5 space-y-3">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">📷</span>
+          <h3 className="text-base font-semibold text-white">Photo Requirements</h3>
+        </div>
+        <p className="text-sm text-slate-300">
+          Photos must be submitted before you complete this assessment. Upload photos for each category below — the Letly team reviews these alongside your written report.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-400">
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> Front &amp; rear exterior</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> Parking area</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> Kitchen</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> All bathrooms &amp; en-suites</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> All bedrooms</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> Living areas</div>
+          <div className="flex items-start gap-1.5"><span className="text-red-400 mt-0.5">●</span> Boiler, fuse box &amp; meters</div>
+          <div className="flex items-start gap-1.5"><span className="text-slate-500 mt-0.5">●</span> Defects / issues (if any)</div>
+        </div>
+      </div>
       <PhotoUpload assessmentId={assessmentId ?? null} />
     </div>
   );
