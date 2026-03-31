@@ -1,7 +1,7 @@
 'use client';
 
 import { Assessment, WINDOW_TYPES, PARKING_OPTIONS } from '@/lib/types';
-import { ConditionRatingField, SelectField, SectionHeader } from '@/components/FormFields';
+import { ConditionRatingField, SelectField, MultiSelectField, SectionHeader } from '@/components/FormFields';
 
 interface Props {
   data: Assessment;
@@ -80,9 +80,9 @@ export default function Step2Exterior({ data, onChange }: Props) {
         onNotesChange={(v) => onChange({ exterior_garden_notes: v })}
       />
 
-      <SelectField
+      <MultiSelectField
         label="Parking"
-        hint="What parking is available?"
+        hint="Select all that apply"
         value={data.exterior_parking}
         onChange={(v) => onChange({ exterior_parking: v })}
         options={PARKING_OPTIONS}

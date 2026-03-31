@@ -198,6 +198,52 @@ export function RedFlagField({ label, hint, checked, onChange, notesValue, onNot
   );
 }
 
+interface MultiSelectFieldProps {
+  label: string;
+  hint?: string;
+  value: string; // comma-separated
+  onChange: (value: string) => void;
+  options: string[];
+}
+
+export function MultiSelectField({ label, hint, value, onChange, options }: MultiSelectFieldProps) {
+  const selected = value ? value.split(',').filter(Boolean) : [];
+
+  const toggle = (option: string) => {
+    if (selected.includes(option)) {
+      onChange(selected.filter((s) => s !== option).join(','));
+    } else {
+      onChange([...selected, option].join(','));
+    }
+  };
+
+  return (
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-slate-200">{label}</label>
+      {hint && <p className="text-xs text-slate-400">{hint}</p>}
+      <div className="flex flex-wrap gap-2 mt-2">
+        {options.map((opt) => (
+          <button
+            key={opt}
+            type="button"
+            onClick={() => toggle(opt)}
+            className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-all ${
+              selected.includes(opt)
+                ? 'border-blue-500 bg-blue-500/20 text-blue-300'
+                : 'border-slate-600 bg-slate-700/30 text-slate-400 hover:bg-slate-700/50 hover:text-slate-200'
+            }`}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+      {selected.length === 0 && (
+        <p className="text-xs text-slate-500 mt-1">Tap to select all that apply</p>
+      )}
+    </div>
+  );
+}
+
 interface SectionHeaderProps {
   title: string;
   description: string;

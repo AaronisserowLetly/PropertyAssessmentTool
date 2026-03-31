@@ -260,6 +260,7 @@ export const PARKING_OPTIONS = [
   'On-Street Only',
   'Allocated Space',
   'Underground Parking',
+  'Bicycle Storage',
   'No Parking',
   'Other',
 ];

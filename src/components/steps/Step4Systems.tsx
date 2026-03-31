@@ -1,7 +1,7 @@
 'use client';
 
 import { Assessment, HEATING_TYPES, HOT_WATER_OPTIONS, INSULATION_OPTIONS, BROADBAND_OPTIONS } from '@/lib/types';
-import { ConditionRatingField, SelectField, SectionHeader } from '@/components/FormFields';
+import { ConditionRatingField, SelectField, MultiSelectField, SectionHeader } from '@/components/FormFields';
 
 interface Props {
   data: Assessment;
@@ -19,9 +19,9 @@ export default function Step4Systems({ data, onChange }: Props) {
 
       <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4 space-y-4">
         <h3 className="text-sm font-semibold text-blue-400 uppercase tracking-wide">Heating</h3>
-        <SelectField
+        <MultiSelectField
           label="Heating Type"
-          hint="Check radiators, thermostat, or ask the landlord. Gas central heating is most common in the UK."
+          hint="Select all that apply — some properties have more than one system"
           value={data.systems_heating_type}
           onChange={(v) => onChange({ systems_heating_type: v })}
           options={HEATING_TYPES}
