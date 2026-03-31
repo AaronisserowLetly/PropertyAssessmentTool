@@ -57,7 +57,7 @@ export default function Step8Summary({ data }: Props) {
               {[data.property_city, data.property_postcode].filter(Boolean).join(', ') || 'No location'}
             </p>
             <p className="text-sm text-slate-400 mt-1">
-              {[data.property_type, data.tenure, data.year_built ? `Built ${data.year_built}` : ''].filter(Boolean).join(' · ') || 'No details'}
+              {[data.property_type, data.tenure].filter(Boolean).join(' · ') || 'No details'}
             </p>
           </div>
           <div className="text-right">

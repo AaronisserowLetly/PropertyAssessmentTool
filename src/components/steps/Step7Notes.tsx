@@ -65,7 +65,7 @@ export default function Step7Notes({ data, onChange, assessmentId }: Props) {
           <div className="flex items-start gap-1.5"><span className="text-slate-500 mt-0.5">●</span> Defects / issues (if any)</div>
         </div>
       </div>
-      <PhotoUpload assessmentId={assessmentId ?? null} />
+      <PhotoUpload assessmentId={assessmentId ?? null} propertyAddress={data.property_address} />
     </div>
   );
 }

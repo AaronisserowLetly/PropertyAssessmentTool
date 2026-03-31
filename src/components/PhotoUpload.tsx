@@ -85,11 +85,21 @@ interface Photo {
   publicUrl: string;
 }
 
-interface Props {
-  assessmentId: string | null;
+function buildFolderName(address: string, assessmentId: string): string {
+  const slug = address
+    .replace(/[^a-zA-Z0-9 ]/g, '')
+    .replace(/\s+/g, '_')
+    .slice(0, 50);
+  const shortId = assessmentId.slice(0, 8);
+  return slug ? `${slug}_${shortId}` : assessmentId;
 }
 
-export default function PhotoUpload({ assessmentId }: Props) {
+interface Props {
+  assessmentId: string | null;
+  propertyAddress?: string;
+}
+
+export default function PhotoUpload({ assessmentId, propertyAddress = '' }: Props) {
   const [photosByCategory, setPhotosByCategory] = useState<Record<string, Photo[]>>({});
   const [uploading, setUploading] = useState<string | null>(null); // category key being uploaded
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -130,7 +140,8 @@ export default function PhotoUpload({ assessmentId }: Props) {
     try {
       for (const file of Array.from(files)) {
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-        const path = `${assessmentId}/${categoryKey}/${Date.now()}_${safeName}`;
+        const folder = buildFolderName(propertyAddress, assessmentId);
+        const path = `${folder}/${categoryKey}/${Date.now()}_${safeName}`;
 
         const { error: uploadError } = await supabase.storage
           .from('assessment-photos')

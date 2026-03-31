@@ -59,13 +59,6 @@ export default function Step1PropertyDetails({ data, onChange }: Props) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <TextField
-          label="Year Built"
-          hint="Approximate is fine"
-          value={data.year_built}
-          onChange={(v) => onChange({ year_built: v })}
-          placeholder="e.g. 1985"
-        />
         <NumberField
           label="Number of Stories"
           hint="How many floors?"

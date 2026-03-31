@@ -11,7 +11,6 @@ export interface Assessment {
   property_city: string;
   property_postcode: string;
   property_type: string;
-  year_built: string;
   num_stories: number | null;
   lot_size: string;
   floor_area: string;
@@ -115,7 +114,6 @@ export const EMPTY_ASSESSMENT: Assessment = {
   property_city: '',
   property_postcode: '',
   property_type: '',
-  year_built: '',
   num_stories: null,
   lot_size: '',
   floor_area: '',
