@@ -300,7 +300,7 @@ export default function AdminDashboard() {
 
       <footer className="border-t border-slate-800 mt-auto">
         <div className="mx-auto max-w-5xl px-4 py-4 text-center">
-          <p className="text-xs text-slate-600">PropertyAssess v1.0 — Internal Assessment Tool</p>
+          <p className="text-xs text-slate-600">Property Assessment Tool — Internal Use Only</p>
         </div>
       </footer>
     </div>
