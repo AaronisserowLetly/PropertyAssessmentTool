@@ -239,10 +239,10 @@ export default function AdminDashboard() {
               const a = assessment as Assessment & { id: string; created_at: string };
               const redFlags = getRedFlagCount(a);
               return (
-                <button
+                <div
                   key={a.id}
                   onClick={() => router.push(`/assessment/${a.id}`)}
-                  className="w-full text-left rounded-xl border border-slate-700 bg-slate-800/50 p-4 hover:bg-slate-800 hover:border-slate-600 transition-all group"
+                  className="w-full text-left rounded-xl border border-slate-700 bg-slate-800/50 p-4 hover:bg-slate-800 hover:border-slate-600 transition-all group cursor-pointer"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1 min-w-0">
@@ -291,7 +291,7 @@ export default function AdminDashboard() {
                       </button>
                     </div>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
